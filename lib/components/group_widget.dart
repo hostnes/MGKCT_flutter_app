@@ -7,10 +7,9 @@ class GroupWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(number);
     return Container(
       margin: EdgeInsets.all(7),
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: Theme.of(context).colorScheme.primary,
@@ -27,7 +26,11 @@ class GroupWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          Icon(Icons.arrow_forward_ios, size: 24, color: Colors.black)
+          Icon(
+            Icons.arrow_forward_ios,
+            size: 24,
+            color: Theme.of(context).colorScheme.inversePrimary,
+          )
         ],
       ),
     );

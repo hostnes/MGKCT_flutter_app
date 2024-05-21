@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:work/components/app_bar.dart';
 import 'package:work/components/bottom_bar.dart';
 import 'package:work/components/group_widget.dart';
 import 'package:work/components/search_field.dart';
@@ -22,30 +23,7 @@ class _GroupsPageState extends State<GroupsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        toolbarHeight: 126.0,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Выберите группу',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.inversePrimary,
-                fontFamily: 'Inter',
-                fontSize: 15.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              margin: EdgeInsets.only(top: 8.0),
-              child: SearchField(),
-            ),
-          ],
-        ),
-      ),
+      appBar: SearchAppBar(title: 'Select Group'),
       body: Column(
         children: [
           SizedBox(height: 10.0),
@@ -66,7 +44,7 @@ class _GroupsPageState extends State<GroupsPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }
