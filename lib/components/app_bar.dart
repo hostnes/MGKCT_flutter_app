@@ -23,7 +23,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
             style: TextStyle(
               color: Theme.of(context).colorScheme.inversePrimary,
               fontFamily: 'Inter',
-              fontSize: 15.0,
+              fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),
           ),

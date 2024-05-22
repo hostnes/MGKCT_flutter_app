@@ -10,6 +10,7 @@ class GroupWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(7),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      height: 65,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: Theme.of(context).colorScheme.primary,

@@ -12,7 +12,7 @@ class SearchField extends StatelessWidget {
         fillColor: Theme.of(context).colorScheme.background,
         contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(15.0),
           borderSide: BorderSide.none,
         ),
       ),
