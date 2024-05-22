@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:work/themes/themes_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:work/pages/groups.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('userInfo');
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),

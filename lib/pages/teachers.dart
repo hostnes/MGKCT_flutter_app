@@ -30,28 +30,24 @@ class _TeachersPageState extends State<TeachersPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_teachers.isNotEmpty) {
+    if (_teachers.isEmpty) {
+      return const AwaitDataPage();
+    } else {
       return Scaffold(
-        appBar: SearchAppBar(title: 'Select Teacher'),
-        body: Expanded(
+        appBar: const SearchAppBar(title: 'Select Teacher'),
+        body: Container(
+          margin: const EdgeInsets.all(7),
           child: ListView.builder(
             itemCount: _teachers.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  print(123);
-                },
-                child: TeacherWidget(
-                  teacher: _teachers[index],
-                ),
+              return TeacherWidget(
+                teacher: _teachers[index],
               );
             },
           ),
         ),
         bottomNavigationBar: BottomBar(),
       );
-    } else {
-      return const AwaitDataPage();
     }
   }
 }

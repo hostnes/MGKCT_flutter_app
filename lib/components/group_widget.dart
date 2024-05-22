@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GroupWidget extends StatelessWidget {
-  final Map<String, dynamic> number;
+  final String number;
 
   GroupWidget({required this.number});
 
@@ -18,7 +18,7 @@ class GroupWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            number['info'] ?? 'N/A',
+            number,
             style: TextStyle(
               color: Theme.of(context).colorScheme.inversePrimary,
               fontSize: 22,

@@ -7,11 +7,19 @@ class ConnectServer {
   static Dio dio = Dio();
 
   static Future<List<Map<String, dynamic>>> getTeachers() async {
-    String url = base_url + 'get_teachers';
+    String url = '${base_url}get_teachers';
     Response response = await dio.get(url);
     List<Map<String, dynamic>> data = (response.data as List<dynamic>)
         .map((e) => e as Map<String, dynamic>)
         .toList();
+    return data;
+  }
+
+  static Future<List<String>> getGroups() async {
+    String url = '${base_url}get_groups';
+    Response response = await dio.get(url);
+    List<String> data =
+        (response.data as List<dynamic>).map((e) => e.toString()).toList();
     return data;
   }
 }
