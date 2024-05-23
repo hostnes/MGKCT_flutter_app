@@ -18,30 +18,38 @@ class _BottomBarState extends State<BottomBar> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const FavorietsPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => FavorietsPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
 
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const TeachersPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => TeachersPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const GroupsPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => GroupsPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const SettingsPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => SettingsPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
     }

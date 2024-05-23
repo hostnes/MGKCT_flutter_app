@@ -56,13 +56,40 @@ class _FavorietsPageState extends State<FavorietsPage> {
             if (_boxTeachers.isNotEmpty && isTeacherTitle) {
               isTeacherTitle = false;
               plusIndex += 1;
-              return Text("Преподователи");
+              return Container(
+                margin: const EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
+                child: Center(
+                  child: Text(
+                    "Преподователи",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              );
             }
             if (_boxElements[index - plusIndex].runtimeType == String) {
               if (_boxGroups.isNotEmpty && isGroupTitle) {
                 isGroupTitle = false;
                 plusIndex += 1;
-                return Text("Группы");
+                return Container(
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 10,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Группы",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                );
               }
               return GroupWidget(
                 number: _boxElements[index - plusIndex],
