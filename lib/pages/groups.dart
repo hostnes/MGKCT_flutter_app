@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:work/api/api.dart';
@@ -43,28 +44,19 @@ class _GroupsPageState extends State<GroupsPage> {
     } else {
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: SearchAppBar(title: 'Select Group'),
-        body: Column(
-          children: [
-            SizedBox(height: 10.0),
-            Expanded(
-              child: ListView.builder(
-                itemCount: _groups.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      print(123);
-                    },
-                    child: GroupWidget(
-                      number: _groups[index],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
+        appBar: const SearchAppBar(title: 'Select Group'),
+        body: Container(
+          margin: const EdgeInsets.all(7),
+          child: ListView.builder(
+            itemCount: _groups.length,
+            itemBuilder: (context, index) {
+              return GroupWidget(
+                number: _groups[index],
+              );
+            },
+          ),
         ),
-        bottomNavigationBar: const BottomBar(),
+        bottomNavigationBar: const BottomBar(selectedIndex: 2),
       );
     }
   }

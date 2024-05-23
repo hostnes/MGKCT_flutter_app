@@ -46,7 +46,7 @@ class _TeachersPageState extends State<TeachersPage> {
             },
           ),
         ),
-        bottomNavigationBar: BottomBar(),
+        bottomNavigationBar: const BottomBar(selectedIndex: 1),
       );
     }
   }

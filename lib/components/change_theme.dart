@@ -12,8 +12,8 @@ class ChangeTheme extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(15)),
-      margin: EdgeInsets.all(7),
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      margin: const EdgeInsets.all(7),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       height: 65,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
