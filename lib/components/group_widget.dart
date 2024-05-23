@@ -68,71 +68,76 @@ class _GroupWidgetState extends State<GroupWidget>
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return GestureDetector(
-          onHorizontalDragUpdate: (details) =>
-              _handleDragUpdate(details, constraints),
-          onHorizontalDragEnd: (details) => _handleDragEnd(),
-          child: Stack(
-            children: [
-              Container(
-                margin: const EdgeInsets.all(7),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Theme.of(context).colorScheme.tertiary,
-                ),
-                alignment: Alignment.centerLeft,
-                child: Icon(
-                  isStarred ? Icons.star : Icons.star_border,
-                  color: Colors.white,
-                  size: 30,
-                ),
-              ),
-              AnimatedBuilder(
-                animation: _animationController,
-                builder: (context, child) {
-                  return Transform.translate(
-                    offset: Offset(
-                        _animationController.value * constraints.maxWidth, 0),
-                    child: child,
-                  );
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 7),
+    return GestureDetector(
+      onTap: () {
+        print(123);
+      },
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return GestureDetector(
+            onHorizontalDragUpdate: (details) =>
+                _handleDragUpdate(details, constraints),
+            onHorizontalDragEnd: (details) => _handleDragEnd(),
+            child: Stack(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(7),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.tertiary,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.number,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.inversePrimary,
-                          fontSize: 22,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 24,
-                        color: Theme.of(context).colorScheme.inversePrimary,
-                      )
-                    ],
+                  alignment: Alignment.centerLeft,
+                  child: Icon(
+                    isStarred ? Icons.star : Icons.star_border,
+                    color: Colors.white,
+                    size: 30,
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+                AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(
+                          _animationController.value * constraints.maxWidth, 0),
+                      child: child,
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 7),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.number,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.inversePrimary,
+                            fontSize: 22,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 24,
+                          color: Theme.of(context).colorScheme.inversePrimary,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

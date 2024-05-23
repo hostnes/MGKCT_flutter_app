@@ -5,47 +5,51 @@ import 'package:work/pages/setting.dart';
 import 'package:work/pages/teachers.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
+  final selectedIndex;
+  const BottomBar({super.key, required this.selectedIndex});
 
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedIndex = 0;
-
   void changePage(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
     switch (index) {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const FavorietsPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => FavorietsPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
 
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const TeachersPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => TeachersPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
       case 2:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const GroupsPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => GroupsPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
       case 3:
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const SettingsPage(),
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => SettingsPage(),
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
     }
@@ -54,12 +58,12 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 80,
+        height: 108,
         child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed, // Добавлено это
+          type: BottomNavigationBarType.fixed,
           selectedItemColor: Theme.of(context).colorScheme.tertiary,
           unselectedItemColor: Theme.of(context).colorScheme.onTertiary,
-          currentIndex: _selectedIndex,
+          currentIndex: widget.selectedIndex,
           onTap: changePage,
           backgroundColor: Theme.of(context).colorScheme.secondary,
           items: const [

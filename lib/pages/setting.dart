@@ -9,12 +9,12 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SearchAppBarSmall(title: 'Settings'),
+      appBar: const SearchAppBarSmall(title: 'Settings'),
       body: Container(
         margin: const EdgeInsets.all(7),
-        child: ChangeTheme(),
+        child: const ChangeTheme(),
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(selectedIndex: 3),
     );
   }
 }
