@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:marquee/marquee.dart';
+import 'package:work/models/teacher.dart';
 
 class TeacherWidget extends StatefulWidget {
   final Map<String, dynamic> teacher;
@@ -12,6 +13,8 @@ class TeacherWidget extends StatefulWidget {
 
 class _TeacherWidgetState extends State<TeacherWidget>
     with SingleTickerProviderStateMixin {
+  List _boxTeachers = [];
+
   late AnimationController _animationController;
   bool isStarred = false;
   var box = Hive.box('userInfo');
@@ -23,6 +26,12 @@ class _TeacherWidgetState extends State<TeacherWidget>
       vsync: this,
       duration: const Duration(milliseconds: 500),
     );
+    _boxTeachers = box.get('teachers', defaultValue: []);
+    for (var e in _boxTeachers) {
+      if (e.toString() == widget.teacher.toString()) {
+        isStarred = true;
+      }
+    }
   }
 
   @override
@@ -42,7 +51,18 @@ class _TeacherWidgetState extends State<TeacherWidget>
       setState(() {
         isStarred = !isStarred;
       });
+      var index = 0;
+      _boxTeachers.map((e) {
+        index++;
+      });
+      if (isStarred == true) {
+        _boxTeachers.add(widget.teacher);
+      } else {
+        _boxTeachers.removeAt(index);
+      }
+      box.put("teachers", _boxTeachers.toList());
     }
+
     _animationController.animateTo(
       0.0,
       duration: const Duration(milliseconds: 500),
