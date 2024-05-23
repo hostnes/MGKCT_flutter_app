@@ -53,58 +53,45 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      selectedItemColor: Theme.of(context).colorScheme.tertiary,
-      unselectedItemColor: Theme.of(context).colorScheme.secondary,
-      currentIndex: _selectedIndex,
-      onTap: changePage,
-      backgroundColor: Theme.of(context).colorScheme.tertiary,
-      items: [
-        BottomNavigationBarItem(
-          label: '',
-          icon: Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: Icon(
-              Icons.bookmark,
-              size: 45,
-              color: Theme.of(context).colorScheme.secondary,
+    return SizedBox(
+        height: 80,
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed, // Добавлено это
+          selectedItemColor: Theme.of(context).colorScheme.tertiary,
+          unselectedItemColor: Theme.of(context).colorScheme.onTertiary,
+          currentIndex: _selectedIndex,
+          onTap: changePage,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          items: const [
+            BottomNavigationBarItem(
+              label: '',
+              icon: Icon(
+                Icons.bookmark,
+                size: 40,
+              ),
             ),
-          ),
-        ),
-        BottomNavigationBarItem(
-          label: '',
-          icon: Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Icon(
-              Icons.format_list_bulleted_sharp,
-              size: 45,
-              color: Theme.of(context).colorScheme.secondary,
+            BottomNavigationBarItem(
+              label: '',
+              icon: Icon(
+                Icons.format_list_bulleted_sharp,
+                size: 40,
+              ),
             ),
-          ),
-        ),
-        BottomNavigationBarItem(
-          label: '',
-          icon: Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Icon(
-              Icons.school,
-              size: 45,
-              color: Theme.of(context).colorScheme.secondary,
+            BottomNavigationBarItem(
+              label: '',
+              icon: Icon(
+                Icons.school,
+                size: 40,
+              ),
             ),
-          ),
-        ),
-        BottomNavigationBarItem(
-          label: '',
-          icon: Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Icon(
-              color: Theme.of(context).colorScheme.secondary,
-              Icons.settings,
-              size: 45,
+            BottomNavigationBarItem(
+              label: '',
+              icon: Icon(
+                Icons.settings,
+                size: 40,
+              ),
             ),
-          ),
-        ),
-      ],
-    );
+          ],
+        ));
   }
 }

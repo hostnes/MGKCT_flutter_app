@@ -11,17 +11,20 @@ class ChangeTheme extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.only(left: 25, right: 25, top: 10),
-      padding: const EdgeInsets.all(25),
+          borderRadius: BorderRadius.circular(15)),
+      margin: EdgeInsets.all(7),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      height: 65,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             "Dark Mode",
             style: TextStyle(
-              fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.inversePrimary,
+              fontSize: 20,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.bold,
             ),
           ),
           CupertinoSwitch(

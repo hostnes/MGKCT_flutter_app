@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 ThemeData lightMode = ThemeData(
   colorScheme: const ColorScheme.light(
-      background: Color(0xFFEDEDED),
-      primary: Color(0xFFFFFFFF),
-      secondary: Color(0xFF787878),
-      inversePrimary: Color(0xFF272727),
-      tertiary: Color(0xFF9DC284)),
+    background: Color.fromARGB(255, 237, 237, 237), //фон
+    primary: Color.fromARGB(255, 255, 255, 255), //основные виджеты
+    secondary: Color.fromARGB(255, 242, 242, 242), //панель навигации
+    inversePrimary: Color.fromARGB(255, 0, 0, 0), //текст
+    tertiary: Color.fromARGB(255, 157, 194, 132), //зеленый
+    onTertiary: Color.fromARGB(255, 115, 115, 115), //иконки навигации
+  ),
 );

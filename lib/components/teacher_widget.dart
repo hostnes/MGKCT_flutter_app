@@ -127,7 +127,7 @@ class _TeacherWidgetState extends State<TeacherWidget>
                           text: widget.teacher['name'],
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.inversePrimary,
-                            fontSize: 22,
+                            fontSize: 20,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.bold,
                           ),
