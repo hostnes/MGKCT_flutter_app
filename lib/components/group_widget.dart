@@ -69,7 +69,6 @@ class _GroupWidgetState extends State<GroupWidget>
 
   @override
   Widget build(BuildContext context) {
-    final String number = widget.number;
     return GestureDetector(
       onTap: () {
         Navigator.push(
