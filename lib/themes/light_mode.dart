@@ -8,5 +8,6 @@ ThemeData lightMode = ThemeData(
     inversePrimary: Color.fromARGB(255, 0, 0, 0), //текст
     tertiary: Color.fromARGB(255, 157, 194, 132), //зеленый
     onTertiary: Color.fromARGB(255, 115, 115, 115), //иконки навигации
+    onPrimary: Color.fromARGB(255, 217, 217, 217), // sheduleTabBar
   ),
 );
