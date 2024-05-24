@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:marquee/marquee.dart';
+import 'package:work/pages/schedule.dart';
 
 class GroupWidget extends StatefulWidget {
   final String number;
@@ -68,9 +69,17 @@ class _GroupWidgetState extends State<GroupWidget>
 
   @override
   Widget build(BuildContext context) {
+    final String number = widget.number;
     return GestureDetector(
       onTap: () {
-        print(123);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SchedulePage(
+                groupNumber: widget
+                    .number), // убедитесь, что groupNumber передается правильно
+          ),
+        );
       },
       child: LayoutBuilder(
         builder: (context, constraints) {
