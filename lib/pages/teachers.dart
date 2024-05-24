@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:work/api/api.dart';
-import 'package:work/components/app_bar.dart';
+import 'package:work/components/search_app_bar.dart';
 import 'package:work/components/bottom_bar.dart';
 import 'package:work/components/teacher_widget.dart';
 import 'package:work/pages/await_data_page.dart';

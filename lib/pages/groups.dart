@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:work/api/api.dart';
-import 'package:work/components/app_bar.dart';
+import 'package:work/components/search_app_bar.dart';
 import 'package:work/components/bottom_bar.dart';
 import 'package:work/components/group_widget.dart';
 import 'package:work/components/search_field.dart';

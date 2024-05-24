@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:work/components/app_bar.dart';
+import 'package:work/components/search_app_bar.dart';
 import 'package:work/components/bottom_bar.dart';
 import 'package:work/components/group_widget.dart';
 import 'package:work/components/teacher_widget.dart';

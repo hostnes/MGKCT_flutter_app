@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:marquee/marquee.dart';
-import 'package:work/pages/schedule.dart';
+import 'package:work/pages/student_schedule.dart';
 
 class GroupWidget extends StatefulWidget {
   final String number;
