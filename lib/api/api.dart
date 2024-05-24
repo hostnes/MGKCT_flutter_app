@@ -22,4 +22,17 @@ class ConnectServer {
         (response.data as List<dynamic>).map((e) => e.toString()).toList();
     return data;
   }
+
+  static Future<Map<String, dynamic>> getWeekDayData() async {
+    String url = '${base_url}get_groups_data';
+    Response response = await dio.get(url);
+    Map<String, dynamic> responseData = response.data;
+
+    if (responseData.containsKey("info")) {
+      Map<String, dynamic> info = responseData["info"];
+      return info;
+    } else {
+      return {};
+    }
+  }
 }

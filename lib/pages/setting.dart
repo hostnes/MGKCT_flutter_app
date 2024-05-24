@@ -9,7 +9,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SearchAppBarSmall(title: 'Settings'),
+      appBar: const AppBarSmall(title: 'Settings'),
       body: Container(
         margin: const EdgeInsets.all(7),
         child: const ChangeTheme(),

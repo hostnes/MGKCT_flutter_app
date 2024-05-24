@@ -25,12 +25,6 @@ class _GroupsPageState extends State<GroupsPage> {
     });
   }
 
-  List<Map<String, dynamic>> groupList = [
-    {'id': 1, 'info': '67МНЭ'},
-    {'id': 2, 'info': '68МС'},
-    {'id': 3, 'info': '69ТП'},
-  ];
-
   @override
   void initState() {
     super.initState();
