@@ -13,6 +13,20 @@ class SheduleAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _SheduleAppBarState extends State<SheduleAppBar> {
+  Map mounths = {
+    "01": "Январь",
+    "02": "Февраль",
+    "03": "Март",
+    "04": "Апрель",
+    "05": "Май",
+    "06": "Июнь",
+    "07": "Июль",
+    "08": "Август",
+    "09": "Сентябрь",
+    "10": "Октябрь",
+    "11": "Ноябрь",
+    "12": "Декабрь",
+  };
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -33,7 +47,7 @@ class _SheduleAppBarState extends State<SheduleAppBar> {
       title: Row(
         children: [
           Text(
-            widget.mounth,
+            mounths[widget.mounth],
             style: TextStyle(
               color: Theme.of(context).colorScheme.inversePrimary,
               fontFamily: 'Inter',

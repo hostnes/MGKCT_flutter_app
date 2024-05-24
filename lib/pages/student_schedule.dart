@@ -13,23 +13,27 @@ class SchedulePage extends StatefulWidget {
   State<SchedulePage> createState() => _SchedulePageState();
 }
 
+Map mounths = {
+  "01": "Январь",
+  "02": "Февраль",
+  "03": "Март",
+  "04": "Апрель",
+  "05": "Май",
+  "06": "Июнь",
+  "07": "Июль",
+  "08": "Август",
+  "09": "Сентябрь",
+  "10": "Октябрь",
+  "11": "Ноябрь",
+  "12": "Декабрь",
+};
+
 class _SchedulePageState extends State<SchedulePage>
     with TickerProviderStateMixin {
   List<ScheduleTab> tabList = [];
-
-  int count = 0;
+  String dayToday = "завтра";
   List<dynamic> weekData = [];
   late TabController tabController;
-
-  Future<void> _fetchSheduleData() async {
-    var data = await ConnectServer.getWeekDayData(widget.groupNumber);
-    setState(() {
-      weekData = data;
-      tabController = TabController(length: weekData.length, vsync: this);
-      tabController.addListener(_buildCategoryTabs);
-      _buildCategoryTabs();
-    });
-  }
 
   @override
   void initState() {
@@ -40,16 +44,27 @@ class _SchedulePageState extends State<SchedulePage>
 
   @override
   void dispose() {
-    tabController.removeListener(_buildCategoryTabs);
+    tabController.removeListener(_buildTabs);
     tabController.dispose();
     super.dispose();
   }
 
-  void _buildCategoryTabs() {
+  Future<void> _fetchSheduleData() async {
+    var data = await ConnectServer.getWeekDayData(widget.groupNumber);
+    setState(() {
+      weekData = data;
+      tabController = TabController(length: weekData.length, vsync: this);
+      tabController.addListener(_buildTabs);
+      _buildTabs();
+    });
+  }
+
+  void _buildTabs() {
     setState(() {
       tabList = weekData.asMap().entries.map((entry) {
         int idx = entry.key;
         var day = entry.value;
+        var month = entry.value;
         bool isSelected = tabController.index == idx;
         return ScheduleTab(
           data: day["info"],
@@ -57,6 +72,38 @@ class _SchedulePageState extends State<SchedulePage>
         );
       }).toList();
     });
+    _calculateDayToday();
+  }
+
+  void _calculateDayToday() {
+    DateTime now = DateTime.now();
+    int day = now.day;
+    int count = 0;
+    var indexToday;
+    for (var item in weekData) {
+      if (item['info']["day"].toString().split(".")[0] == day.toString()) {
+        indexToday = count;
+      }
+      count++;
+    }
+
+    if (indexToday == tabController.index) {
+      setState(() {
+        dayToday = "Сегодня";
+      });
+    } else if (indexToday + 1 == tabController.index) {
+      setState(() {
+        dayToday = "Завтра";
+      });
+    } else if (indexToday - 1 == tabController.index) {
+      setState(() {
+        dayToday = "Вчера";
+      });
+    } else {
+      setState(() {
+        dayToday = weekData[tabController.index]['info']["day"];
+      });
+    }
   }
 
   @override
@@ -66,8 +113,8 @@ class _SchedulePageState extends State<SchedulePage>
     } else {
       return Scaffold(
         appBar: SheduleAppBar(
-          mounth: "Апрель",
-          day: "Сегодня",
+          mounth: weekData[0]['info']['day'].toString().split(".")[1],
+          day: dayToday,
         ),
         body: Column(
           children: [
