@@ -3,6 +3,7 @@ import 'package:work/api/api.dart';
 import 'package:work/components/bottom_bar.dart';
 import 'package:work/components/shedule_app_bar.dart';
 import 'package:work/components/shedule_tab.dart';
+import 'package:work/components/students_lessons.dart';
 import 'package:work/pages/await_data_page.dart';
 
 class SchedulePage extends StatefulWidget {
@@ -133,8 +134,11 @@ class _SchedulePageState extends State<SchedulePage>
               child: TabBarView(
                 controller: tabController,
                 children: weekData.map((day) {
-                  return Center(
-                      child: Text('Content for ${day["info"]["day"]}'));
+                  print(day);
+
+                  return StudentsLessons(
+                    lessons: day,
+                  );
                 }).toList(),
               ),
             ),

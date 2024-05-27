@@ -69,14 +69,13 @@ class _GroupWidgetState extends State<GroupWidget>
 
   @override
   Widget build(BuildContext context) {
+    final String number = widget.number;
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SchedulePage(
-                groupNumber: widget
-                    .number), // убедитесь, что groupNumber передается правильно
+            builder: (context) => SchedulePage(groupNumber: widget.number),
           ),
         );
       },
