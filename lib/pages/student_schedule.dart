@@ -52,7 +52,7 @@ class _SchedulePageState extends State<SchedulePage>
   Future<void> _fetchSheduleData() async {
     var data = await ConnectServer.getWeekDayData(widget.groupNumber);
     setState(() {
-      weekData = data;
+      weekData = data[widget.groupNumber];
       tabController = TabController(length: weekData.length, vsync: this);
       tabController.addListener(_buildTabs);
       _buildTabs();
@@ -64,7 +64,6 @@ class _SchedulePageState extends State<SchedulePage>
       tabList = weekData.asMap().entries.map((entry) {
         int idx = entry.key;
         var day = entry.value;
-        var month = entry.value;
         bool isSelected = tabController.index == idx;
         return ScheduleTab(
           data: day["info"],
