@@ -30,10 +30,10 @@ class ConnectServer {
   //   return responseData;
   // }
 
-  static Future<List<dynamic>> getWeekDayData(String groupNumber) async {
+  static Future<Map<String, dynamic>> getWeekDayData(String groupNumber) async {
     String url = '${base_url}get_week_data_by_group/${groupNumber}';
     Response response = await dio.get(url);
-    List<dynamic> responseData = response.data;
+    Map<String, dynamic> responseData = response.data;
     return responseData;
   }
 }

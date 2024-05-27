@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:vibration/vibration.dart';
 import 'package:work/themes/themes_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -28,12 +30,17 @@ class ChangeTheme extends StatelessWidget {
             ),
           ),
           CupertinoSwitch(
-              value:
-                  Provider.of<ThemeProvider>(context, listen: false).isDarkMode,
-              onChanged: (value) {
-                Provider.of<ThemeProvider>(context, listen: false)
-                    .toggleTheme();
-              })
+            value:
+                Provider.of<ThemeProvider>(context, listen: false).isDarkMode,
+            onChanged: (value) {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+              var box = Hive.box('userInfo');
+              box.put(
+                  "theme",
+                  (Provider.of<ThemeProvider>(context, listen: false).themeData)
+                      .toString());
+            },
+          ),
         ],
       ),
     );
