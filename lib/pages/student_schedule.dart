@@ -133,8 +133,6 @@ class _SchedulePageState extends State<SchedulePage>
               child: TabBarView(
                 controller: tabController,
                 children: weekData.map((day) {
-                  print(day);
-
                   return StudentsLessons(
                     lessons: day,
                   );
