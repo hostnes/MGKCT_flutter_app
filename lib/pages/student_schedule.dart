@@ -5,6 +5,7 @@ import 'package:work/components/shedule_app_bar.dart';
 import 'package:work/components/shedule_tab.dart';
 import 'package:work/components/students_lessons.dart';
 import 'package:work/pages/await_data_page.dart';
+import 'package:work/components/lessons_decoration.dart';
 
 class SchedulePage extends StatefulWidget {
   final String groupNumber;
