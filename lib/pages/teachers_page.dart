@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:work/api/api.dart';
-import 'package:work/components/search_app_bar.dart';
-import 'package:work/components/bottom_bar.dart';
-import 'package:work/components/teacher_widget.dart';
+import 'package:work/components/common/search_app_bar.dart';
+import 'package:work/components/common/bottom_bar.dart';
+import 'package:work/components/teacher/teacher_widget.dart';
 import 'package:work/pages/await_data_page.dart';
 
 class TeachersPage extends StatefulWidget {
@@ -34,7 +34,7 @@ class _TeachersPageState extends State<TeachersPage> {
       return const AwaitDataPage();
     } else {
       return Scaffold(
-        appBar: const SearchAppBar(title: 'Select Teacher'),
+        appBar: const SearchAppBar(title: 'Выберите преподавателя'),
         body: Container(
           margin: const EdgeInsets.all(7),
           child: ListView.builder(

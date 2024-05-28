@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:work/api/api.dart';
-import 'package:work/components/bottom_bar.dart';
-import 'package:work/components/shedule_app_bar.dart';
-import 'package:work/components/shedule_tab.dart';
-import 'package:work/components/students_lessons.dart';
+import 'package:work/components/common/bottom_bar.dart';
+import 'package:work/components/common/shedule_app_bar.dart';
+import 'package:work/components/common/shedule_tab.dart';
+import 'package:work/components/common/lessons_builder.dart';
 import 'package:work/pages/await_data_page.dart';
 
 class TeachersSchedulePage extends StatefulWidget {
@@ -133,7 +133,8 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
               child: TabBarView(
                 controller: tabController,
                 children: weekData.map((day) {
-                  return StudentsLessons(
+                  return LessonsBuilder(
+                    isTeacher: true,
                     lessons: day,
                   );
                 }).toList(),

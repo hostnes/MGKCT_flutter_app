@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:work/components/search_app_bar.dart';
+import 'package:work/components/common/search_app_bar.dart';
 
 class AwaitDataPage extends StatelessWidget {
   const AwaitDataPage({super.key});
