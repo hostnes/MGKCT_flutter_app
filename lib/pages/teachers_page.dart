@@ -14,11 +14,13 @@ class TeachersPage extends StatefulWidget {
 
 class _TeachersPageState extends State<TeachersPage> {
   List<Map<String, dynamic>> _teachers = [];
+  List<Map<String, dynamic>> trueTeachers = [];
 
   Future<void> _fetchTeachers() async {
     var data = await ConnectServer.getTeachers();
     setState(() {
       _teachers = data;
+      trueTeachers = _teachers;
     });
   }
 
@@ -28,20 +30,33 @@ class _TeachersPageState extends State<TeachersPage> {
     _fetchTeachers();
   }
 
+  void onChangeField(String value) {
+    List<Map<String, dynamic>> localTeachers = [];
+    _teachers.forEach((teacher) {
+      if (teacher['name'].toLowerCase().contains(value.toLowerCase())) {
+        localTeachers.add(teacher);
+      }
+    });
+    setState(() {
+      trueTeachers = localTeachers;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_teachers.isEmpty) {
       return const AwaitDataPage();
     } else {
       return Scaffold(
-        appBar: const SearchAppBar(title: 'Выберите преподавателя'),
+        appBar: SearchAppBar(
+            title: 'Выберите преподавателя', onChangeField: onChangeField),
         body: Container(
           margin: const EdgeInsets.all(7),
           child: ListView.builder(
-            itemCount: _teachers.length,
+            itemCount: trueTeachers.length,
             itemBuilder: (context, index) {
               return TeacherWidget(
-                teacher: _teachers[index],
+                teacher: trueTeachers[index],
               );
             },
           ),

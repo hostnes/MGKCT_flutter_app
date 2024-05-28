@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:work/components/common/default_app_bar.dart';
 import 'package:work/components/common/search_app_bar.dart';
 import 'package:work/components/common/bottom_bar.dart';
 import 'package:work/components/students/student_widget.dart';
@@ -46,7 +47,7 @@ class _FavorietsPageState extends State<FavorietsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SearchAppBar(title: 'Избранное'),
+      appBar: const DefaultAppBar(title: 'Избранное'),
       bottomNavigationBar: const BottomBar(selectedIndex: 0),
       body: Container(
         margin: const EdgeInsets.all(7),

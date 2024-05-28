@@ -1,5 +1,3 @@
-import 'dart:ffi';
-import 'dart:convert';
 import 'package:dio/dio.dart';
 
 class ConnectServer {
@@ -23,19 +21,10 @@ class ConnectServer {
     return data;
   }
 
-  // static Future<Map<String, dynamic>> getWeekDayData() async {
-  //   String url = '${base_url}get_groups_data';
-  //   Response response = await dio.get(url);
-  //   Map<String, dynamic> responseData = response.data;
-  //   return responseData;
-  // }
-
   static Future<List<dynamic>> getTeachersWeekData(String lastName) async {
     String url =
         '${base_url}get_week_data_by_teacher/${lastName.split(" ")[0]}';
     Response response = await dio.get(url);
-    print(url);
-    print(response.data);
     List<dynamic> responseData = response.data;
     return responseData;
   }
@@ -45,10 +34,6 @@ class ConnectServer {
     String url = '${base_url}get_week_data_by_group/${groupNumber}';
     Response response = await dio.get(url);
     Map<String, dynamic> responseData = response.data;
-    print(url);
-
-    print(response.data);
-
     return responseData;
   }
 }
