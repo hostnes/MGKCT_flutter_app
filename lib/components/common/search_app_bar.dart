@@ -3,10 +3,13 @@ import 'package:work/components/common/search_field.dart';
 
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  const SearchAppBar({super.key, required this.title});
+  final void Function(String) onChangeField;
+
+  const SearchAppBar(
+      {super.key, required this.title, required this.onChangeField});
 
   @override
-  Size get preferredSize => Size.fromHeight(126.0);
+  Size get preferredSize => const Size.fromHeight(126.0);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +30,12 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
-            margin: EdgeInsets.only(top: 8.0),
-            child: SearchField(),
+            margin: const EdgeInsets.only(top: 8.0),
+            child: SearchField(
+              onChangeField: onChangeField,
+            ),
           ),
         ],
       ),

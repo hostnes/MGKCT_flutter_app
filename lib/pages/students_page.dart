@@ -1,29 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
 import 'package:work/api/api.dart';
 import 'package:work/components/common/search_app_bar.dart';
 import 'package:work/components/common/bottom_bar.dart';
 import 'package:work/components/students/student_widget.dart';
-import 'package:work/components/common/search_field.dart';
 import 'package:work/pages/await_data_page.dart';
-import 'package:work/themes/themes_provider.dart';
 
 class GroupsPage extends StatefulWidget {
   const GroupsPage({super.key});
-
   @override
   State<GroupsPage> createState() => _GroupsPageState();
 }
 
 class _GroupsPageState extends State<GroupsPage> {
   List<String> _groups = [];
-
+  List<String> trueGroups = [];
   Future<void> _fetchGroups() async {
     var data = await ConnectServer.getGroups();
     setState(() {
       _groups = data;
+      trueGroups = _groups;
     });
   }
 
@@ -33,6 +28,19 @@ class _GroupsPageState extends State<GroupsPage> {
     _fetchGroups();
   }
 
+  void onChangeField(String value) {
+    print(123);
+    List<String> localGroups = [];
+    _groups.forEach((group) {
+      if (group.toLowerCase().contains(value.toLowerCase())) {
+        localGroups.add(group);
+      }
+    });
+    setState(() {
+      trueGroups = localGroups;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_groups.isEmpty) {
@@ -40,14 +48,15 @@ class _GroupsPageState extends State<GroupsPage> {
     } else {
       return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: const SearchAppBar(title: 'Выберите группу'),
+        appBar: SearchAppBar(
+            title: 'Выберите группу', onChangeField: onChangeField),
         body: Container(
           margin: const EdgeInsets.all(7),
           child: ListView.builder(
-            itemCount: _groups.length,
+            itemCount: trueGroups.length,
             itemBuilder: (context, index) {
               return StudentsWidget(
-                number: _groups[index],
+                number: trueGroups[index],
               );
             },
           ),
