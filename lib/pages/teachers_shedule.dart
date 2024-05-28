@@ -5,17 +5,16 @@ import 'package:work/components/shedule_app_bar.dart';
 import 'package:work/components/shedule_tab.dart';
 import 'package:work/components/students_lessons.dart';
 import 'package:work/pages/await_data_page.dart';
-import 'package:work/components/lessons_decoration.dart';
 
-class StudentSchedulePage extends StatefulWidget {
-  final String groupNumber;
-  const StudentSchedulePage({super.key, required this.groupNumber});
+class TeachersSchedulePage extends StatefulWidget {
+  final String lastName;
+  const TeachersSchedulePage({super.key, required this.lastName});
 
   @override
-  State<StudentSchedulePage> createState() => _StudentSchedulePageState();
+  State<TeachersSchedulePage> createState() => _TeachersSchedulePageState();
 }
 
-class _StudentSchedulePageState extends State<StudentSchedulePage>
+class _TeachersSchedulePageState extends State<TeachersSchedulePage>
     with TickerProviderStateMixin {
   Map mounths = {
     "01": "Январь",
@@ -52,9 +51,9 @@ class _StudentSchedulePageState extends State<StudentSchedulePage>
   }
 
   Future<void> _fetchSheduleData() async {
-    var data = await ConnectServer.getStudentsWeekData(widget.groupNumber);
+    var data = await ConnectServer.getTeachersWeekData(widget.lastName);
     setState(() {
-      weekData = data[widget.groupNumber];
+      weekData = data;
       tabController = TabController(length: weekData.length, vsync: this);
       tabController.addListener(_buildTabs);
       _buildTabs();
@@ -142,7 +141,7 @@ class _StudentSchedulePageState extends State<StudentSchedulePage>
             ),
           ],
         ),
-        bottomNavigationBar: const BottomBar(selectedIndex: 2),
+        bottomNavigationBar: const BottomBar(selectedIndex: 1),
       );
     }
   }
