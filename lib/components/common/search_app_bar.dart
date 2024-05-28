@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:work/components/search_field.dart';
+import 'package:work/components/common/search_field.dart';
 
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

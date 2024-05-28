@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:marquee/marquee.dart';
-import 'package:work/pages/student_schedule.dart';
+import 'package:work/pages/student_schedule_page.dart';
 
-class GroupWidget extends StatefulWidget {
+class StudentsWidget extends StatefulWidget {
   final String number;
 
-  GroupWidget({required this.number});
+  StudentsWidget({required this.number});
 
   @override
-  State<GroupWidget> createState() => _GroupWidgetState();
+  State<StudentsWidget> createState() => _StudentsWidgetState();
 }
 
-class _GroupWidgetState extends State<GroupWidget>
+class _StudentsWidgetState extends State<StudentsWidget>
     with SingleTickerProviderStateMixin {
   List _boxGroups = [];
   late AnimationController _animationController;

@@ -21,7 +21,7 @@ class ChangeTheme extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Dark Mode",
+            "Темная Тема",
             style: TextStyle(
               color: Theme.of(context).colorScheme.inversePrimary,
               fontSize: 20,

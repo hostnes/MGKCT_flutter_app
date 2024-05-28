@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:marquee/marquee.dart';
-import 'package:work/models/teacher.dart';
-import 'package:work/pages/teachers_shedule.dart';
+
+import 'package:work/pages/teacher_shedule_page.dart';
 
 class TeacherWidget extends StatefulWidget {
   final Map<dynamic, dynamic> teacher;

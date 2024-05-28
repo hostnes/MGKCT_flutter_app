@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:work/pages/favorites.dart';
-import 'package:work/pages/groups.dart';
-import 'package:work/pages/setting.dart';
-import 'package:work/pages/teachers.dart';
+import 'package:work/pages/favorites_page.dart';
+import 'package:work/pages/students_page.dart';
+import 'package:work/pages/setting_page.dart';
+import 'package:work/pages/teachers_page.dart';
 
 class BottomBar extends StatefulWidget {
   final selectedIndex;

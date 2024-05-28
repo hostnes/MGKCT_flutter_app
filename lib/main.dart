@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:work/themes/themes_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:work/pages/groups.dart';
+import 'package:work/pages/students_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {

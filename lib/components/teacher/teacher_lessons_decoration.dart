@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:work/components/students_lessons.dart';
 
-class LessonsDecoration extends StatelessWidget {
+class TeachersLessonsDecoration extends StatelessWidget {
   final String lessons;
   final String title;
   final String cabinet;
-
-  const LessonsDecoration({
-    Key? key,
-    required this.lessons,
-    required this.title,
-    required this.cabinet,
-  }) : super(key: key);
+  final String group;
+  const TeachersLessonsDecoration(
+      {super.key,
+      required this.lessons,
+      required this.title,
+      required this.cabinet,
+      required this.group});
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +47,14 @@ class LessonsDecoration extends StatelessWidget {
             ),
             Text(
               cabinet,
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 13.0,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+            ),
+            Text(
+              group,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 13.0,

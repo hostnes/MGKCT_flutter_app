@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:work/components/search_app_bar.dart';
-import 'package:work/components/bottom_bar.dart';
-import 'package:work/components/group_widget.dart';
-import 'package:work/components/teacher_widget.dart';
+import 'package:work/components/common/search_app_bar.dart';
+import 'package:work/components/common/bottom_bar.dart';
+import 'package:work/components/students/student_widget.dart';
+import 'package:work/components/teacher/teacher_widget.dart';
 
 class FavorietsPage extends StatefulWidget {
   const FavorietsPage({super.key});
@@ -46,7 +46,7 @@ class _FavorietsPageState extends State<FavorietsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SearchAppBar(title: 'Favoriets'),
+      appBar: const SearchAppBar(title: 'Избранное'),
       bottomNavigationBar: const BottomBar(selectedIndex: 0),
       body: Container(
         margin: const EdgeInsets.all(7),
@@ -91,7 +91,7 @@ class _FavorietsPageState extends State<FavorietsPage> {
                   ),
                 );
               }
-              return GroupWidget(
+              return StudentsWidget(
                 number: _boxElements[index - plusIndex],
               );
             } else {
