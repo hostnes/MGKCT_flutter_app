@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:work/api/api.dart';
 import 'package:work/components/common/search_app_bar.dart';
 import 'package:work/components/common/bottom_bar.dart';
@@ -29,7 +30,6 @@ class _GroupsPageState extends State<GroupsPage> {
   }
 
   void onChangeField(String value) {
-    print(123);
     List<String> localGroups = [];
     _groups.forEach((group) {
       if (group.toLowerCase().contains(value.toLowerCase())) {

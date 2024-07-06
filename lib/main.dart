@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:work/pages/favorites_page.dart';
 import 'package:work/themes/themes_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:work/pages/students_page.dart';

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class SheduleAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String mounth;
   final String day;
-  const SheduleAppBar({super.key, required this.day, required this.mounth});
+  final String name;
+  const SheduleAppBar(
+      {super.key, required this.day, required this.mounth, required this.name});
 
   @override
   State<SheduleAppBar> createState() => _SheduleAppBarState();
@@ -33,7 +35,7 @@ class _SheduleAppBarState extends State<SheduleAppBar> {
       automaticallyImplyLeading: false,
       leading: IconButton(
         icon: Transform.rotate(
-          angle: 180 * 3.1415926535 / 180, //перевернуть
+          angle: 180 * 3.1415926535 / 180,
           child: Icon(
             Icons.arrow_forward_ios,
             color: Theme.of(context).colorScheme.inversePrimary,
@@ -45,32 +47,48 @@ class _SheduleAppBarState extends State<SheduleAppBar> {
       ),
       backgroundColor: Theme.of(context).colorScheme.primary,
       title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            mounths[widget.mounth],
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.inversePrimary,
-              fontFamily: 'Inter',
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            children: [
+              Text(
+                mounths[widget.mounth],
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  fontFamily: 'Inter',
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    borderRadius: BorderRadius.circular(8)),
+                child: Text(
+                  widget.day,
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            width: 20,
-          ),
-          Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onPrimary,
-                borderRadius: BorderRadius.circular(8)),
-            child: Text(
-              widget.day,
-              style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
+          Row(
+            children: [
+              Text(
+                widget.name,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                width: 15,
+              )
+            ],
+          )
         ],
       ),
     );

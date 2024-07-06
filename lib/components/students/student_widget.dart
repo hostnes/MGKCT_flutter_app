@@ -68,7 +68,6 @@ class _StudentsWidgetState extends State<StudentsWidget>
 
   @override
   Widget build(BuildContext context) {
-    final String number = widget.number;
     return LayoutBuilder(
       builder: (context, constraints) {
         return GestureDetector(

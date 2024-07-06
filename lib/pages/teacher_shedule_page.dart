@@ -35,6 +35,7 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
   String dayToday = "завтра";
   List<dynamic> weekData = [];
   late TabController tabController;
+  int initialTabIndex = 0;
 
   @override
   void initState() {
@@ -54,7 +55,12 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
     var data = await ConnectServer.getTeachersWeekData(widget.lastName);
     setState(() {
       weekData = data;
-      tabController = TabController(length: weekData.length, vsync: this);
+      initialTabIndex = _calculateDayToday();
+      tabController = TabController(
+        length: weekData.length,
+        vsync: this,
+        initialIndex: initialTabIndex,
+      );
       tabController.addListener(_buildTabs);
       _buildTabs();
     });
@@ -75,11 +81,11 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
     _calculateDayToday();
   }
 
-  void _calculateDayToday() {
+  int _calculateDayToday() {
     DateTime now = DateTime.now();
     int day = now.day;
     int count = 0;
-    var indexToday;
+    int? indexToday;
     for (var item in weekData) {
       if (item['info']["day"].toString().split(".")[0] == day.toString()) {
         indexToday = count;
@@ -87,22 +93,30 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
       count++;
     }
 
-    if (indexToday == tabController.index) {
-      setState(() {
-        dayToday = "Сегодня";
-      });
-    } else if (indexToday + 1 == tabController.index) {
-      setState(() {
-        dayToday = "Завтра";
-      });
-    } else if (indexToday - 1 == tabController.index) {
-      setState(() {
-        dayToday = "Вчера";
-      });
+    if (indexToday != null) {
+      if (indexToday == tabController.index) {
+        setState(() {
+          dayToday = "Сегодня";
+        });
+      } else if (indexToday + 1 == tabController.index) {
+        setState(() {
+          dayToday = "Завтра";
+        });
+      } else if (indexToday - 1 == tabController.index) {
+        setState(() {
+          dayToday = "Вчера";
+        });
+      } else {
+        setState(() {
+          dayToday = weekData[tabController.index]['info']["day"];
+        });
+      }
+      return indexToday;
     } else {
       setState(() {
         dayToday = weekData[tabController.index]['info']["day"];
       });
+      return 0;
     }
   }
 
@@ -115,6 +129,7 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
         appBar: SheduleAppBar(
           mounth: weekData[0]['info']['day'].toString().split(".")[1],
           day: dayToday,
+          name: widget.lastName.split(" ")[0],
         ),
         body: Column(
           children: [
