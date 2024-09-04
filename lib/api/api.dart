@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ConnectServer {
-  static var base_url = 'http://193.168.49.29:8000/api/';
+  static var base_url = 'https://hostnes.space/api/';
   static Dio dio = Dio();
 
   static Future<List<Map<String, dynamic>>> getTeachers() async {
