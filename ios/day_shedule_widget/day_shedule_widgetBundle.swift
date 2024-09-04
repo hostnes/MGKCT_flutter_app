@@ -2,7 +2,7 @@
 //  day_shedule_widgetBundle.swift
 //  day_shedule_widget
 //
-//  Created by hostnes on 5.07.24.
+//  Created by hostnes on 30.08.24.
 //
 
 import WidgetKit

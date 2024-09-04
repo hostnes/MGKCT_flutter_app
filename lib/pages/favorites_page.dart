@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:home_widget/home_widget.dart';
+import 'package:work/api/api.dart';
 import 'package:work/components/common/default_app_bar.dart';
 import 'package:work/components/common/search_app_bar.dart';
 import 'package:work/components/common/bottom_bar.dart';
@@ -22,13 +25,12 @@ class _FavorietsPageState extends State<FavorietsPage> {
   bool isTeacherTitle = true;
   bool isGroupTitle = true;
   int plusIndex = 0;
-
-  String appGroupId = "group.flutter_day_widget_group";
+  String appGroupId = "group.day_shedule_widget";
   String iOSWidgetName = "day_shedule_widget";
 
   var box = Hive.box('userInfo');
 
-  void calculayeLenght() {
+  void calculateLength() {
     _boxLenght += _boxGroups.length;
     _boxLenght += _boxTeachers.length;
     if (_boxGroups.isNotEmpty) {
@@ -39,25 +41,31 @@ class _FavorietsPageState extends State<FavorietsPage> {
     }
   }
 
+  Future<void> updateWidgetData() async {
+    String groupNumber = box.get("widgetTarget");
+    var data = await ConnectServer.getStudentsWeekData(groupNumber);
+    String jsonString = jsonEncode(data[groupNumber]);
+    HomeWidget.setAppGroupId(appGroupId);
+    HomeWidget.saveWidgetData("data", jsonString.replaceAll("\n", "#"));
+    HomeWidget.updateWidget(iOSName: iOSWidgetName);
+  }
+  
   @override
   void initState() {
+    super.initState();
+    updateWidgetData();
     _boxTeachers = box.get('teachers', defaultValue: []);
     _boxGroups = box.get('groups', defaultValue: []);
     _boxElements = _boxTeachers + _boxGroups;
-    calculayeLenght();
-    super.initState();
-    HomeWidget.setAppGroupId(appGroupId);
-    HomeWidget.saveWidgetData("title", "i love ssvetochka");
-    HomeWidget.saveWidgetData("description", "so much");
-    HomeWidget.updateWidget(iOSName: iOSWidgetName);
+    calculateLength();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_boxElements.length == 0) {
-      return Scaffold(
-        appBar: const DefaultAppBar(title: 'Избранное'),
-        bottomNavigationBar: const BottomBar(selectedIndex: 0),
+    if (_boxElements.isEmpty) {
+      return const Scaffold(
+        appBar: DefaultAppBar(title: 'Избранное'),
+        bottomNavigationBar: BottomBar(selectedIndex: 0),
         body: Center(
           child: Text("У вас пока нету избранных элементов"),
         ),
@@ -80,7 +88,7 @@ class _FavorietsPageState extends State<FavorietsPage> {
                   ),
                   child: Center(
                     child: Text(
-                      "Преподователи",
+                      "Преподаватели",
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontSize: 20,

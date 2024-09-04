@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:work/api/api.dart';
 import 'package:work/components/common/bottom_bar.dart';
@@ -5,6 +6,7 @@ import 'package:work/components/common/shedule_app_bar.dart';
 import 'package:work/components/common/shedule_tab.dart';
 import 'package:work/components/common/lessons_builder.dart';
 import 'package:work/pages/await_data_page.dart';
+import 'package:work/pages/network_error_page.dart'; 
 
 class TeachersSchedulePage extends StatefulWidget {
   final String lastName;
@@ -36,6 +38,9 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
   List<dynamic> weekData = [];
   late TabController tabController;
   int initialTabIndex = 0;
+  bool _isLoading = true;
+  bool _hasError = false;
+  String _errorMessage = '';
 
   @override
   void initState() {
@@ -52,18 +57,40 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
   }
 
   Future<void> _fetchSheduleData() async {
-    var data = await ConnectServer.getTeachersWeekData(widget.lastName);
     setState(() {
-      weekData = data;
-      initialTabIndex = _calculateDayToday();
-      tabController = TabController(
-        length: weekData.length,
-        vsync: this,
-        initialIndex: initialTabIndex,
-      );
-      tabController.addListener(_buildTabs);
-      _buildTabs();
+      _isLoading = true;
+      _hasError = false;
     });
+
+    try {
+      // Таймер для контроля времени ожидания
+      var timeout = const Duration(seconds: 10);
+      var data = await ConnectServer.getTeachersWeekData(widget.lastName)
+          .timeout(timeout, onTimeout: () {
+        throw TimeoutException('Превышено время ожидания.');
+      });
+
+      setState(() {
+        weekData = data;
+        initialTabIndex = _calculateDayToday();
+        tabController = TabController(
+          length: weekData.length,
+          vsync: this,
+          initialIndex: initialTabIndex,
+        );
+        tabController.addListener(_buildTabs);
+        _buildTabs();
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+        _hasError = true;
+        _errorMessage = e is TimeoutException
+            ? 'Превышено время ожидания. Попробуйте еще раз.'
+            : 'Ошибка загрузки данных. Попробуйте еще раз.';
+      });
+    }
   }
 
   void _buildTabs() {
@@ -122,8 +149,14 @@ class _TeachersSchedulePageState extends State<TeachersSchedulePage>
 
   @override
   Widget build(BuildContext context) {
-    if (weekData.isEmpty) {
+    if (_isLoading) {
       return const AwaitDataPage();
+    } else if (_hasError) {
+      // Используем ErrorPage при возникновении ошибки
+      return NetworkErrorPage(
+        errorMessage: _errorMessage,
+        onRetry: _fetchSheduleData,
+      );
     } else {
       return Scaffold(
         appBar: SheduleAppBar(
